@@ -88,7 +88,7 @@ const SignUp = ({ navigation }) => {
         <Text style={{fontSize: 16, color: '#03bafc'}}>Username</Text>
           <TextInput
           onChangeText={(text)=>setUserName(text)}
-            placeholder= "S.G.Codes"
+            placeholder= "UserName"
             placeholderTextColor="gray"
             style={{
               borderBottomColor: '#03bafc',
@@ -99,7 +99,7 @@ const SignUp = ({ navigation }) => {
 
             keyboardType="default"
           />
-          {UserNameError?<Text>The field cannot be left empty</Text>:null}
+          {UserNameError?<Text style={styles.errorfield}>The field cannot be left empty</Text>:null}
 
           <Text style={{fontSize: 16, color: '#03bafc'}}>phoneNumber</Text>
           <TextInput
@@ -115,7 +115,7 @@ const SignUp = ({ navigation }) => {
           //  secureTextEntry={true}
             //keyboardType="Numeric"
           />
-          {phoneNumberError?<Text>The field cannot be left empty</Text>:null}
+          {phoneNumberError?<Text style={styles.errorfield}>The field cannot be left empty</Text>:null}
 
 
 
@@ -136,7 +136,7 @@ const SignUp = ({ navigation }) => {
            secureTextEntry={true}
             keyboardType="default"
           />
-          {passwordError?<Text>The field cannot be left empty</Text>:null}
+          {passwordError?<Text style={styles.errorfield}>The field cannot be left empty</Text>:null}
         
         <Text style={{color: '#03bafc', fontSize: 16, textAlign: 'right'}}>
           Forgot Password?
@@ -173,7 +173,7 @@ export default SignUp
 const styles = StyleSheet.create({
   errorfield:{
     color:"red",
-    fontSize:16,
+    fontSize:14,
 
   }
 })

@@ -84,7 +84,7 @@ const Login = ({ navigation }) => {
         <Text style={{fontSize: 16, color: '#03bafc'}}>Username</Text>
           <TextInput
           onChangeText={(text)=>setUserName(text)}
-            placeholder= "S.G.Codes"
+            placeholder= "UserName"
             placeholderTextColor="gray"
             style={{
               borderBottomColor: '#03bafc',
@@ -95,7 +95,7 @@ const Login = ({ navigation }) => {
 
             keyboardType="default"
           />
-          {UserNameError?<Text>hello</Text>:null}
+          {UserNameError?<Text style={styles.errorfield}>the field must not be left empty</Text>:null}
 
 
 
@@ -116,7 +116,7 @@ const Login = ({ navigation }) => {
             secureTextEntry={true}
             keyboardType="default"
           />
-          {passwordError?<Text>hello</Text>:null}
+          {passwordError?<Text style={styles.errorfield}>the field must not be left empty</Text>:null}
         
         <Text style={{color: '#03bafc', fontSize: 16, textAlign: 'right'}}>
           Forgot Password?
@@ -150,4 +150,11 @@ const Login = ({ navigation }) => {
 
 export default Login
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  errorfield:{
+    color:"red",
+    fontSize:14,
+
+  }
+
+})
