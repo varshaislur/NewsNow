@@ -18,31 +18,31 @@ const SignUp = ({ navigation }) => {
   const validation = () => {
     console.warn("function sign up called");
   
-    let isFormValid = true; // Initialize a flag to track form validation
+    let isFormValid = true;
   
     if (!userName) {
       setUserNameError(true);
-      isFormValid = false; // Set the flag to false if username is empty
+      isFormValid = false; 
     } else {
       setUserNameError(false);
     }
   
     if (!password) {
       setPasswordError(true);
-      isFormValid = false; // Set the flag to false if password is empty
+      isFormValid = false; 
     } else {
       setPasswordError(false);
     }
   
     if (!phoneNumber) {
       setPhoneNumberError(true);
-      isFormValid = false; // Set the flag to false if phone number is empty
+      isFormValid = false; 
     } else {
       setPhoneNumberError(false);
     }
   
     if (isFormValid) {
-      navigation.navigate('HomePage'); // Only navigate when the form is valid
+      navigation.navigate('HomePage'); 
     }
   };
   
@@ -50,7 +50,7 @@ const SignUp = ({ navigation }) => {
   return (
     <View>
       <LinearGradient
-        colors={['#42a1f5', '#03bafc', '#42c5f5']}
+        colors={['indianred', 'lightpink','indianred']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
         style={{
@@ -80,18 +80,18 @@ const SignUp = ({ navigation }) => {
           style={{
             fontSize: 19,
             fontWeight: 'bold',
-            color: '#03bafc',
+            color: 'indianred',
             textAlign: 'center',
           }}>
-          LOGIN
+          SIGN UP
         </Text>
-        <Text style={{fontSize: 16, color: '#03bafc'}}>Username</Text>
+        <Text style={{fontSize: 16, color: 'indianred'}}>Username</Text>
           <TextInput
           onChangeText={(text)=>setUserName(text)}
             placeholder= "UserName"
             placeholderTextColor="gray"
             style={{
-              borderBottomColor: '#03bafc',
+              borderBottomColor: 'indianred',
               borderBottomWidth: 1,
               paddingVertical: 0,
               marginTop: 5,
@@ -99,15 +99,17 @@ const SignUp = ({ navigation }) => {
 
             keyboardType="default"
           />
-          {UserNameError?<Text style={styles.errorfield}>The field cannot be left empty</Text>:null}
+          {UserNameError?<Text style={styles.errorfield}>The username field cannot be left empty</Text>:null}
+          <Text></Text>
 
-          <Text style={{fontSize: 16, color: '#03bafc'}}>phoneNumber</Text>
+          <Text style={{fontSize: 16, color: 'indianred'}}>Phone Number</Text>
           <TextInput
-            placeholder="phoneNumber"
+            placeholder="Phone Number"
             placeholderTextColor="gray"
             onChangeText={(text)=>setPhoneNumber(text)}
+            keyboardType="numeric"
             style={{
-              borderBottomColor: '#03bafc',
+              borderBottomColor: 'indianred',
               borderBottomWidth: 1,
               paddingVertical: 0,
               marginTop: 5,
@@ -115,20 +117,20 @@ const SignUp = ({ navigation }) => {
           //  secureTextEntry={true}
             //keyboardType="Numeric"
           />
-          {phoneNumberError?<Text style={styles.errorfield}>The field cannot be left empty</Text>:null}
+          {phoneNumberError?<Text style={styles.errorfield}>The Phone number field cannot be left empty</Text>:null}
 
 
 
 
+          <Text></Text>
 
-
-          <Text style={{fontSize: 16, color: '#03bafc'}}>Password</Text>
+          <Text style={{fontSize: 16, color: 'indianred'}}>Password</Text>
           <TextInput
             placeholder="password"
             placeholderTextColor="gray"
             onChangeText={(text)=>setPassword(text)}
             style={{
-              borderBottomColor: '#03bafc',
+              borderBottomColor: 'indianred',
               borderBottomWidth: 1,
               paddingVertical: 0,
               marginTop: 5,
@@ -136,14 +138,14 @@ const SignUp = ({ navigation }) => {
            secureTextEntry={true}
             keyboardType="default"
           />
-          {passwordError?<Text style={styles.errorfield}>The field cannot be left empty</Text>:null}
+          {passwordError?<Text style={styles.errorfield}>The Password field cannot be left empty</Text>:null}
         
-        <Text style={{color: '#03bafc', fontSize: 16, textAlign: 'right'}}>
+        <Text style={{color: 'indianred', fontSize: 16, textAlign: 'right'}}>
           Forgot Password?
         </Text>
         <TouchableOpacity onPress={validation}>
   <LinearGradient
-    colors={['#42a1f5', '#03bafc', '#42c5f5']}
+    colors={['indianred', 'lightpink','indianred']}
     start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 0 }}
     style={{
@@ -155,12 +157,12 @@ const SignUp = ({ navigation }) => {
       marginTop: 100,
       marginBottom: 10,
     }}>
-    <Text style={{ color: 'white', fontSize: 19 }}>SignUp</Text>
+    <Text style={{ color: 'white', fontSize: 19 }}>SIGN UP</Text>
   </LinearGradient>
 </TouchableOpacity>
-        <Text style={{color: '#03bafc', fontSize: 16, textAlign: 'center'}}>
+        <Text style={{color: 'indianred', fontSize: 16, textAlign: 'center'}}>
           Already have an account?{''}
-          <Text onPress={() => navigation.navigate('Login')}>Login</Text>
+          <Text style={{color:'mediumpurple'}} onPress={() => navigation.navigate('Login')}>Login</Text>
         </Text>
       </View>
     </View>
@@ -172,7 +174,7 @@ export default SignUp
 
 const styles = StyleSheet.create({
   errorfield:{
-    color:"red",
+    color:"blue",
     fontSize:14,
 
   }

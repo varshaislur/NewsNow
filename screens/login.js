@@ -46,7 +46,7 @@ const Login = ({ navigation }) => {
   return (
     <View>
       <LinearGradient
-        colors={['#42a1f5', '#03bafc', '#42c5f5']}
+        colors={['indianred', 'lightpink','indianred']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
         style={{
@@ -76,18 +76,19 @@ const Login = ({ navigation }) => {
           style={{
             fontSize: 19,
             fontWeight: 'bold',
-            color: '#03bafc',
+            color: 'indianred',
             textAlign: 'center',
           }}>
           LOGIN
         </Text>
-        <Text style={{fontSize: 16, color: '#03bafc'}}>Username</Text>
+        <Text></Text>
+        <Text style={{fontSize: 16, color: 'indianred'}}>Username</Text>
           <TextInput
           onChangeText={(text)=>setUserName(text)}
             placeholder= "UserName"
             placeholderTextColor="gray"
             style={{
-              borderBottomColor: '#03bafc',
+              borderBottomColor: 'indianred',
               borderBottomWidth: 1,
               paddingVertical: 0,
               marginTop: 5,
@@ -95,20 +96,22 @@ const Login = ({ navigation }) => {
 
             keyboardType="default"
           />
-          {UserNameError?<Text style={styles.errorfield}>the field must not be left empty</Text>:null}
+          {UserNameError?<Text style={styles.errorfield}>the username field must not be left empty</Text>:null}
 
 
 
+          <Text></Text>
+          <Text></Text>
 
 
 
-          <Text style={{fontSize: 16, color: '#03bafc'}}>Password</Text>
+          <Text style={{fontSize: 16, color: 'indianred'}}>Password</Text>
           <TextInput
             placeholder="password"
             placeholderTextColor="gray"
             onChangeText={(text)=>setPassword(text)}
             style={{
-              borderBottomColor: '#03bafc',
+              borderBottomColor: 'indianred',
               borderBottomWidth: 1,
               paddingVertical: 0,
               marginTop: 5,
@@ -116,14 +119,14 @@ const Login = ({ navigation }) => {
             secureTextEntry={true}
             keyboardType="default"
           />
-          {passwordError?<Text style={styles.errorfield}>the field must not be left empty</Text>:null}
+          {passwordError?<Text style={styles.errorfield}>the password field must not be left empty</Text>:null}
         
-        <Text style={{color: '#03bafc', fontSize: 16, textAlign: 'right'}}>
+        <Text style={{color: 'indianred', fontSize: 16, textAlign: 'right'}}>
           Forgot Password?
         </Text>
         <TouchableOpacity onPress={validation}>
   <LinearGradient
-    colors={['#42a1f5', '#03bafc', '#42c5f5']}
+    colors={['indianred', 'lightpink','indianred']}
     start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 0 }}
     style={{
@@ -138,9 +141,9 @@ const Login = ({ navigation }) => {
     <Text style={{ color: 'white', fontSize: 19 }}>LOGIN</Text>
   </LinearGradient>
 </TouchableOpacity>
-        <Text style={{color: '#03bafc', fontSize: 16, textAlign: 'center'}}>
-          Dont't have an account?{''}
-          <Text onPress={() => navigation.navigate('SignUp')}>Signup</Text>
+        <Text style={{color: 'indianred', fontSize: 16, textAlign: 'center'}}>
+          Don't have an account?{''}
+          <Text style={{color:'mediumpurple'}} onPress={() => navigation.navigate('SignUp')}>Signup</Text>
         </Text>
       </View>
     </View>
@@ -152,7 +155,7 @@ export default Login
 
 const styles = StyleSheet.create({
   errorfield:{
-    color:"red",
+    color:'blue',
     fontSize:14,
 
   }
