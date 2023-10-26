@@ -1,14 +1,17 @@
 import { StyleSheet, Text, View, Button,
   Dimensions,
   TextInput,
-  TouchableOpacity, } from 'react-native'
+  TouchableOpacity,Image } from 'react-native'
 import React,{ useState } from 'react'
 import LinearGradient from 'react-native-linear-gradient';
+import auth from '@react-native-firebase/auth';
+import GoogleAuth from './googleauth';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Login = ({ navigation }) => {
-  const [userName,setUserName]=useState("")
+  const [Email,setEmail]=useState("")
   const [password,setPassword]=useState("")
-  const [UserNameError,setUserNameError]=useState(false)
+  const [EmailError,setEmailError]=useState(false)
   const [passwordError,setPasswordError]=useState(false)
 
 
@@ -16,12 +19,12 @@ const Login = ({ navigation }) => {
     console.warn("function login called")
     let isFormValid=true;
     
-    if(!userName){
-        setUserNameError(true)
+    if(!Email){
+        setEmailError(true)
         isFormValid=false
     }
     else{
-      setUserNameError(false)
+      setEmailError(false)
       isFormValid=true
     }
     if(!password){
@@ -36,7 +39,23 @@ const Login = ({ navigation }) => {
 
   
       if(isFormValid){
-      navigation.navigate('HomePage')
+      auth()
+  .signInWithEmailAndPassword(Email, password)
+  .then(() => {
+    console.log('signed in!');
+    navigation.navigate('main'); 
+  })
+  .catch(error => {
+    // if (error.code === 'auth/email-already-in-use') {
+    //   console.log('That email address is already in use!');
+    // }
+
+    // if (error.code === 'auth/invalid-email') {
+    //   console.log('That email address is invalid!');
+    // }
+
+    console.error(error);
+  });
       }
       
   
@@ -59,7 +78,7 @@ const Login = ({ navigation }) => {
           paddingTop: 40,
         }}>
         <Text style={{ color: 'white', fontSize: 31, fontWeight: 'bold' }}>
-          NewsApp
+          NewsNow
         </Text>
       </LinearGradient>
       <View
@@ -82,10 +101,11 @@ const Login = ({ navigation }) => {
           LOGIN
         </Text>
         <Text></Text>
-        <Text style={{fontSize: 16, color: 'indianred'}}>Username</Text>
+        <Text style={{fontSize: 16, color: 'indianred'}}>Email</Text>
           <TextInput
-          onChangeText={(text)=>setUserName(text)}
-            placeholder= "UserName"
+          onChangeText={(text)=>setEmail(text)}
+          value={Email}
+            placeholder= "Email"
             placeholderTextColor="gray"
             style={{
               borderBottomColor: 'indianred',
@@ -96,7 +116,7 @@ const Login = ({ navigation }) => {
 
             keyboardType="default"
           />
-          {UserNameError?<Text style={styles.errorfield}>the username field must not be left empty</Text>:null}
+          {EmailError?<Text style={styles.errorfield}>the Email field must not be left empty</Text>:null}
 
 
 
@@ -110,6 +130,7 @@ const Login = ({ navigation }) => {
             placeholder="password"
             placeholderTextColor="gray"
             onChangeText={(text)=>setPassword(text)}
+            value={password}
             style={{
               borderBottomColor: 'indianred',
               borderBottomWidth: 1,
@@ -145,6 +166,9 @@ const Login = ({ navigation }) => {
           Don't have an account?{''}
           <Text style={{color:'mediumpurple'}} onPress={() => navigation.navigate('SignUp')}>Signup</Text>
         </Text>
+        {/* <Text style={{color:'mediumpurple'}} onPress={() => navigation.navigate('GoogleAuth')}>google sign in</Text> */}
+        <Text></Text>
+        <GoogleAuth navigation={navigation} />
       </View>
     </View>
   );
@@ -158,6 +182,14 @@ const styles = StyleSheet.create({
     color:'blue',
     fontSize:14,
 
-  }
+  },
+  button: {
+    backgroundColor: 'indianred',
+    borderRadius: 5,
+    width: 150,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 
 })

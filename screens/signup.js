@@ -4,13 +4,14 @@ import { StyleSheet, Text, View, Button,
   TouchableOpacity, } from 'react-native'
 import React,{ useState } from 'react'
 import LinearGradient from 'react-native-linear-gradient';
+import auth from '@react-native-firebase/auth';
 
 const SignUp = ({ navigation }) => {
-  const [userName,setUserName]=useState("")
+  const [Email,setEmail]=useState("")
   const [password,setPassword]=useState("")
   const [phoneNumber,setPhoneNumber]=useState("")
 
-  const [UserNameError,setUserNameError]=useState(true)
+  const [EmailError,setEmailError]=useState(true)
   const [passwordError,setPasswordError]=useState(true)
   const [phoneNumberError,setPhoneNumberError]=useState(true)
 
@@ -20,11 +21,11 @@ const SignUp = ({ navigation }) => {
   
     let isFormValid = true;
   
-    if (!userName) {
-      setUserNameError(true);
+    if (!Email) {
+      setEmailError(true);
       isFormValid = false; 
     } else {
-      setUserNameError(false);
+      setEmailError(false);
     }
   
     if (!password) {
@@ -42,7 +43,24 @@ const SignUp = ({ navigation }) => {
     }
   
     if (isFormValid) {
-      navigation.navigate('HomePage'); 
+     
+      auth()
+  .createUserWithEmailAndPassword(Email, password)
+  .then(() => {
+    console.log('User account created & signed in!');
+    navigation.navigate('main'); 
+  })
+  .catch(error => {
+    if (error.code === 'auth/email-already-in-use') {
+      console.log('That email address is already in use!');
+    }
+
+    if (error.code === 'auth/invalid-email') {
+      console.log('That email address is invalid!');
+    }
+
+    console.error(error);
+  });
     }
   };
   
@@ -63,7 +81,7 @@ const SignUp = ({ navigation }) => {
           paddingTop: 40,
         }}>
         <Text style={{ color: 'white', fontSize: 31, fontWeight: 'bold' }}>
-          NewsApp
+          NewsNow
         </Text>
       </LinearGradient>
       <View
@@ -85,10 +103,11 @@ const SignUp = ({ navigation }) => {
           }}>
           SIGN UP
         </Text>
-        <Text style={{fontSize: 16, color: 'indianred'}}>Username</Text>
+        <Text style={{fontSize: 16, color: 'indianred'}}>Email</Text>
           <TextInput
-          onChangeText={(text)=>setUserName(text)}
-            placeholder= "UserName"
+          onChangeText={(text)=>setEmail(text)}
+          value={Email}
+            placeholder= "Email"
             placeholderTextColor="gray"
             style={{
               borderBottomColor: 'indianred',
@@ -99,12 +118,13 @@ const SignUp = ({ navigation }) => {
 
             keyboardType="default"
           />
-          {UserNameError?<Text style={styles.errorfield}>The username field cannot be left empty</Text>:null}
+          {EmailError?<Text style={styles.errorfield}>The Email field cannot be left empty</Text>:null}
           <Text></Text>
 
           <Text style={{fontSize: 16, color: 'indianred'}}>Phone Number</Text>
           <TextInput
             placeholder="Phone Number"
+            value={phoneNumber}
             placeholderTextColor="gray"
             onChangeText={(text)=>setPhoneNumber(text)}
             keyboardType="numeric"
@@ -127,6 +147,7 @@ const SignUp = ({ navigation }) => {
           <Text style={{fontSize: 16, color: 'indianred'}}>Password</Text>
           <TextInput
             placeholder="password"
+            value={password}
             placeholderTextColor="gray"
             onChangeText={(text)=>setPassword(text)}
             style={{
