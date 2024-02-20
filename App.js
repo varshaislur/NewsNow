@@ -9,9 +9,12 @@ import signup from './screens/signup';
 import Login from './screens/login';
 import SignUp from './screens/signup';
 import HomePage from './screens/homepage';
-import main from './screens/main';
+import Main from './screens/main';
 import googleauth from './screens/googleauth';
 import GoogleAuth from './screens/googleauth';
+import GetNews from './screens/GetNews';
+import WebViewComponent from './screens/Components/WebView';
+import GoogleSignOutButton from './screens/googlesignout'
 
 
 const Stack = createNativeStackNavigator();
@@ -23,8 +26,12 @@ function App() {
         
         <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="GoogleAuth" component={GoogleAuth} />
+      <Stack.Screen name="GoogleSignOut" component={GoogleSignOutButton} />
+      <Stack.Screen name="Home" component={HomePage} />
         <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="main" component={main} />
+        <Stack.Screen name="Main" component={Main} />
+        <Stack.Screen name="GetNews" component={GetNews} />
+        <Stack.Screen name="WebView" component={WebViewComponent} />
       </Stack.Navigator>
     </NavigationContainer>
   );

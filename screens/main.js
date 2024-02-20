@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 
-const main = () => {
+const Main = () => {
   return (
        
       <Bottomnav/>
@@ -13,6 +13,6 @@ const main = () => {
   )
 }
 
-export default main
+export default Main
 
 const styles = StyleSheet.create({})
